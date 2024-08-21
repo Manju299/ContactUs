@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+
 .names {
   display: flex;
 }
@@ -6,22 +8,46 @@
   padding: 20px;
   background-color: #ffffff;
   border-radius: 12px;
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
 }
-textarea,
+h2 {
+  font-weight: 700;
+}
+/* textarea,
 .name > input[type="text"] {
   padding: 12px;
   border-radius: 4px;
   border: 1px solid;
-}
+  font-weight: 400;
+} */
 
 .name {
   padding: 10px;
   margin-right: 8px;
   margin-top: 8px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.input_error {
+  border: 1px solid red;
+  padding: 10px;
+  margin-right: 8px;
+  margin-top: 8px;
+  border-radius: 4px;
 }
 
 label {
   margin-top: 8px;
+  font-weight: 400;
+}
+
+.error_message {
+  color: red;
+  font-size: 12px;
+  margin-top: 1px;
+  margin-bottom: 0;
 }
 
 .email_input,
@@ -30,6 +56,23 @@ textarea {
   padding: 10px;
   box-sizing: border-box;
   margin-top: 8px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.email_error {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 8px;
+  border: 1px solid red;
+  border-radius: 4px;
+}
+
+.email,
+.querytype,
+.textarea {
+  margin-top: 10px;
 }
 span {
   color: #0c7d69;
@@ -46,11 +89,33 @@ button {
   text-transform: uppercase;
 }
 
+.radio_buttons {
+  display: flex;
+}
+
 .radio_buttons > label {
   border: 1px solid;
   padding: 10px;
   border-radius: 4px;
   margin-right: 8px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.consent {
+  /* */
+
+  margin: 20px 0;
+}
+.flex_check {
+  display: flex;
+  align-items: center;
+}
+
+.flex_check > label {
+  margin: 0;
+  margin-left: 10px;
 }
 /* 
 *,
