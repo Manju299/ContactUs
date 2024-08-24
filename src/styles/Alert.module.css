@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+
+.aleart_container {
+  position: initial;
+  align-self: start;
+  background-color: #2a4244;
+  color: white;
+  padding: 18px;
+  border-radius: 8px;
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  z-index: 1;
+}
+.heading {
+  display: flex;
+  font-family: "Karla", sans-serif;
+}
+
+.heading img {
+  width: 20px;
+  height: 20px;
+}
+.heading p {
+  margin: 0;
+  margin-left: 10px;
+  font-weight: 800;
+}
+
+.message {
+  margin-top: 10px;
+  font-size: 12px;
+}

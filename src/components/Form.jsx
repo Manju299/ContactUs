@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Styles from "../styles/Form.module.css";
+import Alert from "./Alert";
 
 export default function Form() {
   const [formdata, setFormData] = useState({
@@ -17,6 +18,8 @@ export default function Form() {
     radioOption: "",
     message: "",
   });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
@@ -72,135 +75,145 @@ export default function Form() {
       setError(newErrors);
       console.log(error);
     } else {
-      // Handle form submission or other logic
       console.log("Form data submitted:", formdata);
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 2000);
     }
   }
 
   return (
-    <div className={Styles.container}>
-      <h2> Contact Us </h2>
-      <form>
-        <div className={Styles.names}>
-          <label>
-            First Name <span>*</span>
-            <br />
-            <input
-              className={error.fname ? Styles.input_error : Styles.name}
-              type="text"
-              name="fname"
-              value={formdata.fname}
-              onChange={handleChange}
-            />
-            {error.fname && (
-              <p className={Styles.error_message}>{error.fname} </p>
-            )}
-          </label>
+    <>
+      <div>{isSubmitted && <Alert />}</div>
+      <div className={Styles.container}>
+        <h2> Contact Us </h2>
+        <form>
+          <div className={Styles.names}>
+            <label>
+              First Name <span>*</span>
+              <br />
+              <input
+                className={error.fname ? Styles.input_error : Styles.name}
+                type="text"
+                name="fname"
+                value={formdata.fname}
+                onChange={handleChange}
+              />
+              {error.fname && (
+                <p className={Styles.error_message}>{error.fname} </p>
+              )}
+            </label>
 
-          <label>
-            Last Name: <span>*</span>
-            <br />
-            <input
-              className={error.fname ? Styles.input_error : Styles.name}
-              type="text"
-              name="lname"
-              value={formdata.lname}
-              onChange={handleChange}
-            />
-            {error.fname && (
-              <p className={Styles.error_message}>{error.fname} </p>
-            )}
-          </label>
-        </div>
-
-        <div className={Styles.email}>
-          <label>
-            Email:<span>*</span>
-            <br />
-            <input
-              className={error.email ? Styles.email_error : Styles.email_input}
-              type="email"
-              name="email"
-              value={formdata.email}
-              onChange={handleChange}
-            />
-            {error.email && (
-              <p className={Styles.error_message}>{error.email} </p>
-            )}
-          </label>
-        </div>
-        <div className={Styles.querytype}>
-          <label>
-            Query Type<span> *</span>
-          </label>
-        </div>
-        <div className={Styles.radio_buttons}>
-          <label className={Styles.custom_radio}>
-            <input
-              type="Radio"
-              value="General Enquiry"
-              name="radioOption"
-              checked={formdata.radioOption === "General Enquiry"}
-              onChange={handleChange}
-            />
-            General Enquiry
-          </label>
-
-          <label className={Styles.custom_radio}>
-            <input
-              type="Radio"
-              id="option2"
-              name="radioOption"
-              value="Support Request"
-              checked={formdata.radioOption === "Support Request"}
-              onChange={handleChange}
-            />
-            Support Request
-          </label>
-        </div>
-        {error.radioOption && (
-          <p className={Styles.error_message}>{error.radioOption} </p>
-        )}
-
-        <div className={Styles.textarea}>
-          <label>
-            Message<span> *</span>
-          </label>
-          <textarea
-            className={error.message ? Styles.email_error : Styles.email_input}
-            value={formdata.message}
-            name="message"
-            onChange={handleChange}
-          />
-        </div>
-        {error.message && (
-          <p className={Styles.error_message}>{error.message} </p>
-        )}
-
-        <div className={Styles.consent}>
-          <div className={Styles.flex_check}>
-            <input
-              type="checkbox"
-              id="checkbox"
-              name="checkbox"
-              checked={formdata.checkbox}
-              onChange={handleChange}
-            />
-            <label htmlFor="checkbox">
-              I consent to being contacted by the team<span>*</span>
+            <label>
+              Last Name <span>*</span>
+              <br />
+              <input
+                className={error.lname ? Styles.input_error : Styles.name}
+                type="text"
+                name="lname"
+                value={formdata.lname}
+                onChange={handleChange}
+              />
+              {error.lname && (
+                <p className={Styles.error_message}>{error.lname} </p>
+              )}
             </label>
           </div>
-          {error.checkbox && (
-            <p className={Styles.error_message}>{error.checkbox} </p>
-          )}
-        </div>
 
-        <div>
-          <button onClick={handSubmit} className={Styles.button}>
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className={Styles.email}>
+            <label>
+              Email<span> *</span>
+              <br />
+              <input
+                className={
+                  error.email ? Styles.email_error : Styles.email_input
+                }
+                type="email"
+                name="email"
+                value={formdata.email}
+                onChange={handleChange}
+              />
+              {error.email && (
+                <p className={Styles.error_message}>{error.email} </p>
+              )}
+            </label>
+          </div>
+          <div className={Styles.querytype}>
+            <label>
+              Query Type<span> *</span>
+            </label>
+          </div>
+          <div className={Styles.radio_buttons}>
+            <label className={Styles.custom_radio}>
+              <input
+                type="Radio"
+                value="General Enquiry"
+                name="radioOption"
+                checked={formdata.radioOption === "General Enquiry"}
+                onChange={handleChange}
+              />
+              General Enquiry
+            </label>
+
+            <label className={Styles.custom_radio}>
+              <input
+                type="Radio"
+                id="option2"
+                name="radioOption"
+                value="Support Request"
+                checked={formdata.radioOption === "Support Request"}
+                onChange={handleChange}
+              />
+              Support Request
+            </label>
+          </div>
+          {error.radioOption && (
+            <p className={Styles.error_message}>{error.radioOption} </p>
+          )}
+
+          <div className={Styles.textarea}>
+            <label>
+              Message<span> *</span>
+            </label>
+            <textarea
+              className={
+                error.message ? Styles.email_error : Styles.email_input
+              }
+              value={formdata.message}
+              name="message"
+              onChange={handleChange}
+            />
+          </div>
+          {error.message && (
+            <p className={Styles.error_message}>{error.message} </p>
+          )}
+
+          <div className={Styles.consent}>
+            <div className={Styles.flex_check}>
+              <input
+                type="checkbox"
+                id="checkbox"
+                name="checkbox"
+                checked={formdata.checkbox}
+                onChange={handleChange}
+              />
+              <label htmlFor="checkbox">
+                I consent to being contacted by the team<span> *</span>
+              </label>
+            </div>
+            {error.checkbox && (
+              <p className={Styles.error_message}>{error.checkbox} </p>
+            )}
+          </div>
+
+          <div>
+            <button onClick={handSubmit} className={Styles.button}>
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
